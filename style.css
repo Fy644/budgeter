@@ -1,0 +1,11 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.window {
+    font-size: 1rem;
+    zoom: 2;
+}
