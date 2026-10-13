@@ -13,7 +13,7 @@
         if($result->num_rows > 0){
             $user = $result->fetch_assoc();
             if(password_verify($password, $user['password'])){
-                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_id'] = $user['username'];
                 header("Location: index.php");
                 exit();
             } else {
@@ -44,12 +44,12 @@
                         <p role="status">Account created. You can now log in.</p>
                     <?php endif; ?>
                     <div class="group" style="width: 200px">
-                        <label for="text30">Username</label>
-                        <input id="text30" type="text" name="username" />
+                        <label for="text1">Username</label>
+                        <input id="text1" type="text" name="username" />
                     </div>
                     <div class="group" style="width: 200px">
-                        <label for="text31">Password</label>
-                        <input id="text31" type="password" name="password" />
+                        <label for="text2">Password</label>
+                        <input id="text2" type="password" name="password" />
                     </div>
                     <br>
                     <section style="display: flex; justify-content: flex-end; gap: 6px">

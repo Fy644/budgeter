@@ -4,8 +4,21 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
+    font-size: 1rem;
+}
+.home-page {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    zoom: 2;
 }
 .window {
-    font-size: 1rem;
     zoom: 2;
+}
+a{
+    color: black;
+}
+a:hover{
+    color: black;
+    text-decoration: none;
 }
