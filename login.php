@@ -13,7 +13,8 @@
         if($result->num_rows > 0){
             $user = $result->fetch_assoc();
             if(password_verify($password, $user['password'])){
-                $_SESSION['user_id'] = $user['username'];
+                $_SESSION['user_name'] = $user['username'];
+                $_SESSION['user_perms'] = $user['level'];
                 header("Location: index.php");
                 exit();
             } else {

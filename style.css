@@ -10,10 +10,90 @@ body {
     position: fixed;
     top: 8px;
     left: 8px;
-    zoom: 2;
+    zoom: 1.5;
 }
 .window {
-    zoom: 2;
+    zoom: 1.2;
+    display: grid;
+    grid-column: 1fr;
+    grid-row: auto 1fr;
+}
+.insert-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+.insert-form-grid .group {
+    min-width: 0;
+}
+.insert-form-grid input,
+.insert-form-grid select,
+.insert-form-grid textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+.insert-form-submit {
+    grid-column: 1 / -1;
+}
+.purchase-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+.purchase-pagination [aria-current="page"] {
+    font-weight: bold;
+}
+.spending-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
+    gap: 16px;
+    align-items: stretch;
+    margin-bottom: 16px;
+}
+.category-purchases-chart,
+.total-spending {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 320px;
+    overflow: hidden;
+    border: 1px solid #9bbbd4;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #f8fcff 0%, #e6f2fb 48%, #d2e6f5 100%);
+    box-shadow: inset 0 1px 0 #fff, 0 2px 8px rgb(35 75 110 / 18%);
+}
+.total-spending {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    color: #173b5e;
+}
+.total-spending h2 {
+    margin: 0 0 18px;
+    font-size: 1.25rem;
+}
+.total-spending p {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    text-shadow: 0 1px 0 #fff;
+}
+.total-spending span {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+}
+@media (max-width: 600px) {
+    .insert-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .spending-summary {
+        grid-template-columns: 1fr;
+    }
 }
 a{
     color: black;

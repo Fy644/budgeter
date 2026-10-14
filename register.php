@@ -1,4 +1,4 @@
-//idgaf this is done completely by chatgpt
+<! idgaf this is done completely by chatgpt >
 <?php
     require_once 'db.php';
 

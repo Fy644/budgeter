@@ -1,6 +1,6 @@
 <?php
     require_once 'db.php';
-    if (!isset($_SESSION['user_id'])){
+    if (!isset($_SESSION['user_name'])){
         header("Location: login.php");
         exit();
     }
@@ -20,24 +20,24 @@
                 <li role="option" class="active">
                     <a href="index.php">Home</a>
                 </li>
+                <?php if ($_SESSION['user_perms'] === 0) 
+                    echo '<li role="option"><a href="insert.php">Insert new product</a></li>';    
+                ?>
                 <li role="option">
-                    <a href="insert.php">Insert New Item</a>
+                    <a href="view.php">View purchases</a>
                 </li>
             </ul>
         </div>
-        <form method="POST">
-            <div class="window active" style="width: 250px; max-width: calc(100vw - 2rem);">
-                <div class="title-bar">
-                    <div class="title-bar-text">Budgeter</div>
-                </div>
-                <div class="window-body has-space">
-                    <p>Welcome, <?= htmlspecialchars($_SESSION['user_id'], ENT_QUOTES, 'UTF-8') ?>!</p>
-                    <section style="display: flex; justify-content: flex-end; gap: 6px">
-                        <button>
-                            <a href="logout.php" class="default" >Logout</a>
-                        </button>
-                    </section>
+        <div class="window active" style="width: 250px; max-width: calc(100vw - 2rem);">
+            <div class="title-bar">
+                <div class="title-bar-text">Budgeter</div>
+                <div class="title-bar-controls">
+                    <button type="button" aria-label="Close" onclick="window.location.href='logout.php'"></button>
                 </div>
             </div>
+            <div class="window-body has-space">
+                <p>Welcome, <?= htmlspecialchars($_SESSION['user_name'], ENT_QUOTES, 'UTF-8') ?>!</p>
+            </div>
+        </div>
     </body>
 </html>
