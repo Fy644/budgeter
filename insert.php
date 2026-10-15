@@ -47,7 +47,8 @@
                 <a href="index.php">Home</a>
             </li>
             <?php if ($_SESSION['user_perms'] === 0) 
-                echo '<li role="option"><a href="insert.php">Insert new product</a></li>';    
+                echo '<li role="option"><a href="insert.php">Insert new product</a></li>';
+                echo '<li role="option"><a href="select-edit.php">Edit product</a></li>';
             ?>
             <li role="option">
                 <a href="view.php">View purchases</a>

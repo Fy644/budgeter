@@ -124,6 +124,19 @@ body {
     font-size: 0.9rem;
     letter-spacing: 0.12em;
 }
+.person-spending {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+.total-spending .person-spending p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    overflow-wrap: normal;
+    text-shadow: none;
+    white-space: nowrap;
+}
 @media (max-width: 600px) {
     .insert-form-grid {
         grid-template-columns: 1fr;

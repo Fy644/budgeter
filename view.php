@@ -82,6 +82,19 @@
     $totalSpendingResult->execute();
     $totalSpendingResult = $totalSpendingResult->get_result();
     $totalSpending = (float) $totalSpendingResult->fetch_assoc()['total_spending'];
+
+    $personSpendingFilter = $dateFilter . ($selectedPeriod !== '' ? ' AND ' : ' WHERE ') . 'LOWER(responsable) IN ("anne", "kadir")';
+    $personSpendingStmt = $conn->prepare('SELECT LOWER(responsable) AS responsible_name, COALESCE(SUM(precio * exchangerate), 0) AS total_spending FROM compras' . $personSpendingFilter . ' GROUP BY LOWER(responsable)');
+    if ($selectedPeriod !== '') {
+        $personSpendingStmt->bind_param('ss', $periodStartValue, $periodEndValue);
+    }
+    $personSpendingStmt->execute();
+    $personSpendingResult = $personSpendingStmt->get_result();
+    $personSpending = ['anne' => 0.0, 'kadir' => 0.0];
+    while ($person = $personSpendingResult->fetch_assoc()) {
+        $personSpending[strtolower((string) $person['responsible_name'])] = (float) $person['total_spending'];
+    }
+
     $purchaseChartData = [];
     while ($compra = $purchaseData->fetch_assoc()) {
         $purchaseChartData[] = [
@@ -107,6 +120,7 @@
             </li>
             <?php if ($_SESSION['user_perms'] === 0)
                 echo '<li role="option"><a href="insert.php">Insert new product</a></li>';
+                echo '<li role="option"><a href="select-edit.php">Edit product</a></li>';
             ?>
             <li role="option">
                 <a href="view.php">View purchases</a>
@@ -135,6 +149,10 @@
                     <h2 id="total-spending-title">Total spending</h2>
                     <p>$<?= number_format($totalSpending, 2, '.', ',') ?></p>
                     <span>CAD</span>
+                    <div class="person-spending" aria-label="Total spending by person">
+                        <p>Anne: $<?= number_format($personSpending['anne'], 2, '.', ',') ?></p>
+                        <p>Kadir: $<?= number_format($personSpending['kadir'], 2, '.', ',') ?></p>
+                    </div>
                 </section>
             </div>
             <?php if ($totalPages > 1): ?>
