@@ -152,3 +152,33 @@ a:hover{
     color: black;
     text-decoration: none;
 }
+.period-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.month-filter {
+    margin: 0;
+}
+.download-statement {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 4px 10px;
+    border: 1px solid #173b5e;
+    border-radius: 4px;
+    background: linear-gradient(#f7fbff, #dcecf8);
+    color: #173b5e !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+.download-statement:hover {
+    background: linear-gradient(#fff, #c9e2f5);
+    text-decoration: none;
+}
+@media (max-width: 600px) {
+    .period-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

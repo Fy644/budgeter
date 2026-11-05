@@ -132,17 +132,20 @@
             <div class="title-bar-text">Budgeter</div>
         </div>
         <div class="window-body has-space">
-            <form method="GET" class="month-filter">
-                <label for="purchase-month">Purchase period:</label>
-                <select id="purchase-month" name="month" onchange="this.form.submit()">
-                    <option value="" <?= $selectedPeriod === '' ? 'selected' : '' ?>>All months</option>
-                    <?php foreach ($periods as $period): ?>
-                        <option value="<?= htmlspecialchars($period['value'], ENT_QUOTES, 'UTF-8') ?>" <?= $selectedPeriod === $period['value'] ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($period['label'], ENT_QUOTES, 'UTF-8') ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </form>
+            <div class="period-controls">
+                <form method="GET" class="month-filter">
+                    <label for="purchase-month">Purchase period:</label>
+                    <select id="purchase-month" name="month" onchange="this.form.submit()">
+                        <option value="" <?= $selectedPeriod === '' ? 'selected' : '' ?>>All months</option>
+                        <?php foreach ($periods as $period): ?>
+                            <option value="<?= htmlspecialchars($period['value'], ENT_QUOTES, 'UTF-8') ?>" <?= $selectedPeriod === $period['value'] ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($period['label'], ENT_QUOTES, 'UTF-8') ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+                <a class="download-statement" href="statement.php<?= $selectedPeriod !== '' ? '?month=' . urlencode($selectedPeriod) : '' ?>">Download statement</a>
+            </div>
             <div class="spending-summary">
                 <div id="category-purchases" class="category-purchases-chart"></div>
                 <section class="total-spending" aria-labelledby="total-spending-title">
